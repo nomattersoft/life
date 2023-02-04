@@ -6,9 +6,10 @@ import java.awt.*;
 public class MainFrame extends JFrame {
 	
 	public MainFrame() {
-		add(new Canvas());
+		
 		setLocationRelativeTo(null);
 		setSize(new Dimension(1200, 800));
+		add(new Canvas(getWidth(), getHeight()));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}

@@ -5,12 +5,12 @@ import java.awt.*;
 
 public class Canvas extends JPanel implements Runnable {
 	
-	private static final int SIZE_X = 100;
-	private static final int SIZE_Y = 100;
+	private static final int CELL_SIZE = 10;
 	
-	private boolean[][] cells = new boolean[SIZE_X][SIZE_Y];
+	private boolean[][] cells;
 	
-	public Canvas() {
+	public Canvas(int frameWidth, int frameHeight) {
+		cells = new boolean[frameWidth / CELL_SIZE][frameHeight / CELL_SIZE];
 		new Thread(this).start();
 	}
 	
@@ -21,11 +21,9 @@ public class Canvas extends JPanel implements Runnable {
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
 		g.setColor(Color.decode("#ff0000"));
-		int width = getWidth() / SIZE_X;
-		int height = getHeight() / SIZE_Y;
 		for (int x = 0; x < cells.length; x++) {
-			for (int y = 0; y < cells.length; y++) {
-				g.fillRect(x * width, y * height, width - 1, height - 1);
+			for (int y = 0; y < cells[x].length; y++) {
+				g.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE - 1, CELL_SIZE - 1);
 			}
 		}
 	}
